@@ -2,14 +2,18 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-RUN pip install uv
+# uvのインストール行を削除
+# RUN pip install uv
 
-COPY pyproject.toml uv.lock* ./
+# pyproject.tomlとuv.lockの代わりにrequirements.txtをコピー
+COPY requirements.txt ./
 
-RUN uv sync --frozen --no-dev
+# uv syncの代わりにpip installを使用
+RUN pip install -r requirements.txt
 
 COPY . .
 
 EXPOSE 8080
 
-CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# uv runを削除してuvicornを直接実行
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
