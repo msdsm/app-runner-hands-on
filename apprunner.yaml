@@ -4,9 +4,9 @@ build:
   commands:
     build:
       - echo "Installing uv..."
-      - curl -LsSf https://astral.sh/uv/install.sh | sh
-      - source ~/.cargo/env
+      - pip install uv
       - echo "Installing dependencies with uv..."
+      - uv sync --frozen --no-devs with uv..."
       - uv sync --frozen --no-dev
 run:
   runtime-version: 3.11
