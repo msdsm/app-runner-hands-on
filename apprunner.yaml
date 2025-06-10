@@ -2,8 +2,10 @@ version: 1.0
 runtime: python311
 build:
   commands:
+    install:
+      - pip install -r requirements.txt
     build:
-      - pip install fastapi uvicorn
+      - echo "No build step required for this application"
 run:
   runtime-version: 3.11
   command: uvicorn main:app --host 0.0.0.0 --port 8080
